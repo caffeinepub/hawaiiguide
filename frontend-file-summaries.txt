@@ -1,0 +1,11 @@
+{
+  "frontend/src/App.tsx": "Main app entry with TanStack Router setup, routes for home (/) and island detail (/island/$name), and an AppInitializer that calls initializeIslands() on the backend actor on mount.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for fetching all islands (useAllIslands) and a single island by name (useIslandByName) from the backend actor.",
+  "frontend/src/utils/imageMapper.ts": "Utility that maps island names to their generated image asset paths and provides a URL-encoding helper for island slugs.",
+  "frontend/src/components/Layout.tsx": "Full-page layout wrapper with a sticky ocean-dark header (logo + nav), main content slot, and a footer with attribution and caffeine.ai link.",
+  "frontend/src/components/IslandCard.tsx": "Clickable island card component showing the island's illustration, name, description, beach count, attraction count, and a navigate-to-detail arrow.",
+  "frontend/src/pages/Home.tsx": "Landing page with a full-bleed hero image, stats bar, island grid (with loading skeletons and error state), and an About section.",
+  "frontend/src/pages/IslandDetail.tsx": "Island detail page showing hero image, description, quick stats, top attractions list, beaches grid, and travel tips with back navigation.",
+  "frontend/src/index.css": "Global styles with OKLCH tropical color tokens (ocean, coral, golden, palm, sand), Playfair Display serif for headings, and Inter for body text.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with tropical color palette (ocean, coral, golden, palm, sand), Playfair Display display font, custom card shadows, and all standard shadcn tokens."
+}

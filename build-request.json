@@ -1,0 +1,95 @@
+{
+  "kind": "build_request",
+  "title": "Hawaii Travel Guide App",
+  "projectName": "Hawaii Guide",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a Hawaii travel guide app with sections for Islands (Big Island, Maui, Oahu, Kauai, Molokai, Lanai), each displaying key highlights, top attractions, beaches, and travel tips.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Hawaiiguide"
+        ]
+      },
+      "acceptanceCriteria": [
+        "App displays a home/landing page representing Hawaii",
+        "At least the main islands are listed with individual detail views",
+        "Each island section includes attractions, beaches, and travel tips",
+        "Navigation between islands works correctly"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Create a backend that stores island data including name, description, top attractions (name + description), beaches, and travel tips, with query functions to retrieve all islands and individual island details.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores structured data for each Hawaiian island",
+        "Query to fetch all islands returns the full list",
+        "Query to fetch a single island by ID returns its full details including attractions, beaches, and tips"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Apply a lush tropical visual theme inspired by Hawaii: warm sunset palette (coral, golden yellow, turquoise sea, deep green), bold serif headings, and full-bleed hero imagery. Use a card-based layout for island browsing and detail pages with immersive section dividers.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color palette uses tropical tones (coral, turquoise, golden yellow, deep green)",
+        "Typography uses a bold serif for headings and clean sans-serif for body",
+        "Island cards have a visually rich layout with images and concise info",
+        "Overall design feels cohesive and evocative of Hawaii"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Render the generated hero banner and island illustration images from frontend/public/assets/generated as static assets throughout the app.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero image appears on the landing page",
+        "Each island card displays its corresponding illustration",
+        "Images load from frontend/public/assets/generated"
+      ]
+    }
+  ],
+  "constraints": [
+    "All backend logic must remain in a single Motoko actor (backend/main.mo)",
+    "Do not use external APIs or third-party data sources"
+  ],
+  "nonGoals": [
+    "User authentication or login",
+    "Booking or reservation features",
+    "Real-time data or weather integrations",
+    "Maps or geolocation features"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Wide panoramic tropical Hawaii landscape with volcano, ocean, lush greenery, and a vibrant sunset sky in coral and gold tones (hawaii-hero.dim_1440x600.png)",
+      "Illustrated card thumbnail of the Big Island with lava fields and Mauna Kea (island-big-island.dim_600x400.png)",
+      "Illustrated card thumbnail of Maui with the Road to Hana and green cliffs (island-maui.dim_600x400.png)",
+      "Illustrated card thumbnail of Oahu with Waikiki beach and Diamond Head crater (island-oahu.dim_600x400.png)",
+      "Illustrated card thumbnail of Kauai with the Na Pali Coast sea cliffs (island-kauai.dim_600x400.png)",
+      "Illustrated card thumbnail of Molokai with tranquil coastline and white sand (island-molokai.dim_600x400.png)",
+      "Illustrated card thumbnail of Lanai with rugged volcanic terrain and clear blue water (island-lanai.dim_600x400.png)"
+    ],
+    "edits": []
+  }
+}

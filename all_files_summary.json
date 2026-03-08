@@ -1,0 +1,20 @@
+{
+  "backend/main.mo": "Motoko actor that defines Island, Attraction, Beach, and Tip types, stores island data in a Map, and exposes an initializeIslands function pre-populated with data for Big Island, Maui, Oahu, and other Hawaiian islands.",
+  "feature_evidence.json": "Feature evidence report mapping three product features (travel guide sections, tropical visual theme, static image rendering) to their implementing source files, components, and test IDs.",
+  "frontend-file-summaries.txt": "JSON document containing one-sentence summaries for each frontend source file, covering routing, data fetching hooks, image mapping, layout, island card, home page, detail page, styles, and Tailwind config.",
+  "frontend/index.css": "Root CSS file that imports Tailwind directives and defines shadcn-compatible OKLCH CSS custom property tokens for light and dark themes including colors, radius, and sidebar variables.",
+  "frontend/index.html": "Minimal HTML shell for the React app with a root div and a module script entry point targeting src/main.tsx, titled HawaiiGuide.",
+  "frontend/src/App.tsx": "Sets up TanStack Router with root, home (/), and island detail (/island/$name) routes, and wraps the app in an AppInitializer that calls initializeIslands() on the backend actor on mount.",
+  "frontend/src/components/IslandCard.tsx": "Clickable card component that displays an island's illustration, name, description, beach/attraction/tip counts, and navigates to the island detail page on click.",
+  "frontend/src/components/Layout.tsx": "Full-page layout wrapper providing a sticky ocean-dark header with logo and nav links, a main content slot, and a footer with branding and a caffeine.ai attribution link.",
+  "frontend/src/hooks/useActor.ts": "React hook that creates and caches a backend actor via React Query, using an authenticated identity when available or falling back to an anonymous actor, and invalidates dependent queries when the actor changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides a React context and hook for Internet Identity authentication on the ICP platform, managing login state, identity persistence, and AuthClient lifecycle.",
+  "frontend/src/hooks/useQueries.ts": "Defines two React Query hooks—`useAllIslands` and `useIslandByName`—that fetch island data from the backend actor.",
+  "frontend/src/index.css": "Global stylesheet that imports Google Fonts, sets up Tailwind directives, and defines a tropical Hawaii-themed OKLCH color palette with light and dark mode CSS variables.",
+  "frontend/src/main.tsx": "Application entry point that mounts the React app with QueryClientProvider and InternetIdentityProvider wrappers.",
+  "frontend/src/pages/Home.tsx": "Home page component featuring a hero banner, stats bar, and a grid of island cards fetched via `useAllIslands`, with loading skeletons and error handling.",
+  "frontend/src/pages/IslandDetail.tsx": "Detail page for a single Hawaiian island, fetching data by name via `useIslandByName` and displaying a hero image, description, stats, attractions, and beaches.",
+  "frontend/src/utils/imageMapper.ts": "Utility module that maps Hawaiian island names to their corresponding static image paths and provides a URL-encoding helper for island slugs.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration extending the theme with a tropical color palette (ocean, coral, golden, palm, sand) using OKLCH CSS variables, custom fonts, and plugins for typography, container queries, and animations.",
+  "project_state.json": "Tracks the state of the HawaiiGuide app project, including existing features, a pending backend feature request for island data storage, image requirements, and architectural notes at schema version 1.0.0."
+}

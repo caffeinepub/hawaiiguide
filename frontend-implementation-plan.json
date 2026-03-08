@@ -1,0 +1,102 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Hawaii Travel Guide App - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create Hawaii travel guide app with island sections displaying highlights, attractions, beaches, and travel tips",
+      "acceptanceCriteria": [
+        "App displays a home/landing page representing Hawaii",
+        "At least the main islands are listed with individual detail views",
+        "Each island section includes attractions, beaches, and travel tips",
+        "Navigation between islands works correctly"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Set up routing for home page and island detail pages using React Router. Configure routes for the landing page (/) and individual island detail pages (/island/:name). Include navigation structure to enable browsing between islands."
+        },
+        {
+          "path": "frontend/src/pages/Home.tsx",
+          "operation": "create",
+          "description": "Create the landing page component that displays a hero section with the generated hawaii-hero image from frontend/public/assets/generated/hawaii-hero.dim_1440x600.png. Fetch all islands from backend using getAllIslands() and render island cards in a grid layout. Each card should display the island's name, brief description, and corresponding illustration from frontend/public/assets/generated/."
+        },
+        {
+          "path": "frontend/src/pages/IslandDetail.tsx",
+          "operation": "create",
+          "description": "Create the island detail page component that fetches a specific island by name using getIslandByName(). Display the island's full information including description, top attractions list, beaches list, and travel tips. Use immersive section dividers between content areas."
+        },
+        {
+          "path": "frontend/src/components/IslandCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable island card component that displays an island's thumbnail illustration, name, and summary description. The card should be clickable and navigate to the island detail page. Use the island illustrations from frontend/public/assets/generated/ (island-big-island.dim_600x400.png, island-maui.dim_600x400.png, island-oahu.dim_600x400.png, island-kauai.dim_600x400.png, island-molokai.dim_600x400.png, island-lanai.dim_600x400.png)."
+        },
+        {
+          "path": "frontend/src/hooks/useIslands.ts",
+          "operation": "create",
+          "description": "Create a custom React hook that fetches all islands from the backend using getAllIslands(). Handle loading and error states. Return the islands array along with loading and error flags for consumption by the Home page."
+        },
+        {
+          "path": "frontend/src/hooks/useIslandDetail.ts",
+          "operation": "create",
+          "description": "Create a custom React hook that accepts an island name parameter and fetches the specific island details using getIslandByName(). Handle loading and error states. Return the island data along with loading and error flags for consumption by the IslandDetail page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Apply lush tropical visual theme with Hawaii-inspired colors, typography, and card-based layouts",
+      "acceptanceCriteria": [
+        "Color palette uses tropical tones (coral, turquoise, golden yellow, deep green)",
+        "Typography uses a bold serif for headings and clean sans-serif for body",
+        "Island cards have a visually rich layout with images and concise info",
+        "Overall design feels cohesive and evocative of Hawaii"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend the Tailwind theme with custom tropical color palette including coral, turquoise, golden yellow, and deep green shades. Add custom font families for bold serif headings and clean sans-serif body text."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Import custom fonts (serif for headings, sans-serif for body) and define global typography styles. Apply base tropical styling to ensure consistent theme across the app. Set default heading styles to use the bold serif font family."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create a layout wrapper component that provides consistent navigation header and footer across all pages. Apply the tropical theme styling and ensure proper spacing and structure for content areas."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Render generated hero banner and island illustration images as static assets throughout the app",
+      "acceptanceCriteria": [
+        "Hero image appears on the landing page",
+        "Each island card displays its corresponding illustration",
+        "Images load from frontend/public/assets/generated"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Home.tsx",
+          "operation": "modify",
+          "description": "Wire the hero banner image frontend/public/assets/generated/hawaii-hero.dim_1440x600.png into the landing page hero section. Ensure the image is displayed prominently at the top of the page with proper responsive sizing."
+        },
+        {
+          "path": "frontend/src/components/IslandCard.tsx",
+          "operation": "modify",
+          "description": "Map each island name to its corresponding illustration from frontend/public/assets/generated/. Use island-big-island.dim_600x400.png for Big Island, island-maui.dim_600x400.png for Maui, island-oahu.dim_600x400.png for Oahu, island-kauai.dim_600x400.png for Kauai, island-molokai.dim_600x400.png for Molokai, and island-lanai.dim_600x400.png for Lanai. Display the correct illustration in each island card."
+        },
+        {
+          "path": "frontend/src/utils/imageMapper.ts",
+          "operation": "create",
+          "description": "Create a utility function that maps island names to their corresponding image file paths in frontend/public/assets/generated/. This ensures consistent image references across components and handles name normalization if needed."
+        }
+      ]
+    }
+  ]
+}

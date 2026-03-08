@@ -1,0 +1,69 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-hawaii-travel-guide-app-with-sections-for-islands-big-island-maui-oahu-kauai-molokai-lanai-each-displaying-key-highlights-top-attractions-beaches-and-travel-tips",
+      "featureTitle": "Create a Hawaii travel guide app with sections for Islands (Big Island, Maui, Oahu, Kauai, Molokai, Lanai), each displaying key highlights, top attractions, beaches, and travel tips.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/IslandCard.tsx",
+        "frontend/src/pages/Home.tsx",
+        "frontend/src/pages/IslandDetail.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-lush-tropical-visual-theme-inspired-by-hawaii-warm-sunset-palette-coral-golden-yellow-turquoise-sea-deep-green-bold-serif-headings-and-full-bleed-hero-imagery-use-a-card-based-layout-for-island-browsing-and-detail-pages-with-immersive-section-dividers",
+      "featureTitle": "Apply a lush tropical visual theme inspired by Hawaii: warm sunset palette (coral, golden yellow, turquoise sea, deep green), bold serif headings, and full-bleed hero imagery. Use a card-based layout for island browsing and detail pages with immersive section dividers.",
+      "files": [
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-render-the-generated-hero-banner-and-island-illustration-images-from-frontend-public-assets-generated-as-static-assets-throughout-the-app",
+      "featureTitle": "Render the generated hero banner and island illustration images from frontend/public/assets/generated as static assets throughout the app.",
+      "files": [
+        "frontend/src/components/IslandCard.tsx",
+        "frontend/src/pages/Home.tsx",
+        "frontend/src/utils/imageMapper.ts"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
