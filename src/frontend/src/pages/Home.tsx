@@ -3,6 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "@tanstack/react-router";
 import {
+  ArrowRight,
   CalendarDays,
   ChevronDown,
   MapPin,
@@ -12,6 +13,15 @@ import {
 } from "lucide-react";
 import IslandCard from "../components/IslandCard";
 import { useAllIslands } from "../hooks/useQueries";
+
+const locationToIsland: Record<string, string> = {
+  Oahu: "Oahu",
+  Maui: "Maui",
+  "Big Island": "Big Island",
+  Kauai: "Kauai",
+  Molokai: "Molokai",
+  Lanai: "Lanai",
+};
 
 const monthEvents = [
   {
@@ -520,6 +530,17 @@ export default function Home() {
                           {event.location}
                         </span>
                       </div>
+                      {locationToIsland[event.location] && (
+                        <Link
+                          to="/island/$name"
+                          params={{ name: locationToIsland[event.location] }}
+                          data-ocid={`events.item.${mIdx * 3 + eIdx + 1}.link`}
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-ocean-500 hover:text-ocean-700 transition-colors w-fit"
+                        >
+                          Explore island
+                          <ArrowRight className="w-3 h-3" />
+                        </Link>
+                      )}
                     </div>
                   ))}
                 </div>

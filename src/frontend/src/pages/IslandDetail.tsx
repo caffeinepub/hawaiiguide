@@ -11,6 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Link, useParams } from "@tanstack/react-router";
 import {
   ArrowLeft,
+  CheckCircle2,
   ChevronRight,
   Clock,
   Lightbulb,
@@ -25,6 +26,132 @@ import { useState } from "react";
 import type { Attraction, Beach } from "../backend";
 import { useIslandByName } from "../hooks/useQueries";
 import { getIslandImage } from "../utils/imageMapper";
+
+// Beach extras lookup by beach name
+const beachExtras: Record<string, { swimming: string; amenities: string[] }> = {
+  // Oahu
+  "Waikiki Beach": {
+    swimming: "Calm, lifeguarded, ideal for beginners and families",
+    amenities: [
+      "Lifeguards",
+      "Restrooms",
+      "Showers",
+      "Rental boards",
+      "Restaurants nearby",
+    ],
+  },
+  "Hanauma Bay": {
+    swimming: "Snorkeling paradise with calm, crystal-clear water",
+    amenities: [
+      "Snorkel rentals",
+      "Guided tours",
+      "Visitor center",
+      "Restrooms",
+      "Parking",
+    ],
+  },
+  "North Shore Beaches": {
+    swimming: "Expert surfers only in winter; safe swimming in summer",
+    amenities: [
+      "Showers",
+      "Food trucks",
+      "Shave ice stands",
+      "Surf lessons (summer)",
+    ],
+  },
+  // Maui
+  "Ka'anapali Beach": {
+    swimming:
+      "Excellent — calm turquoise water, great for swimming and snorkeling",
+    amenities: [
+      "Lifeguards",
+      "Restrooms",
+      "Beach volleyball",
+      "Watersport rentals",
+      "Resort amenities",
+    ],
+  },
+  "Hamoa Beach": {
+    swimming:
+      "Moderate — scenic but can have strong currents; swim with caution",
+    amenities: ["Restrooms", "Pavilion", "Showers"],
+  },
+  "Hookipa Beach": {
+    swimming:
+      "Not recommended for swimming — world-famous windsurfing and kiteboarding spot",
+    amenities: ["Parking", "Restrooms", "Picnic tables", "Viewing area"],
+  },
+  // Big Island
+  "Hapuna Beach": {
+    swimming: "Excellent — wide sandy shore, calm in summer, waves in winter",
+    amenities: [
+      "Lifeguards (weekends)",
+      "Restrooms",
+      "Showers",
+      "Picnic areas",
+      "Snorkel gear rentals",
+    ],
+  },
+  "Punalu'u Black Sand Beach": {
+    swimming: "Not recommended — dangerous currents; swim area limited",
+    amenities: ["Restrooms", "Picnic tables", "Sea turtle viewing", "Parking"],
+  },
+  "Kaimana Beach": {
+    swimming: "Calm and safe, popular with locals and families",
+    amenities: ["Lifeguards", "Restrooms", "Nearby restaurants", "Parking"],
+  },
+  // Kauai
+  "Poipu Beach": {
+    swimming: "Excellent — sheltered cove, calm water, great for families",
+    amenities: [
+      "Lifeguards",
+      "Restrooms",
+      "Showers",
+      "Snorkel rentals",
+      "Playground",
+    ],
+  },
+  "Hanalei Bay": {
+    swimming: "Great in summer; winter swells make it surfing territory",
+    amenities: [
+      "Lifeguards (summer)",
+      "Restrooms",
+      "Showers",
+      "Kayak rentals",
+      "Picnic areas",
+    ],
+  },
+  "Ke'e Beach": {
+    swimming:
+      "Calm and beautiful in summer; rough in winter — snorkeling in season",
+    amenities: ["Restrooms", "Parking (limited)", "Showers"],
+  },
+  // Molokai
+  "Papohaku Beach": {
+    swimming: "Dangerous currents — best for walks and sunsets, not swimming",
+    amenities: ["Restrooms", "Picnic areas", "Campsite nearby"],
+  },
+  "Halawa Beach": {
+    swimming: "Calm inner bay suitable for swimming; outer area has currents",
+    amenities: ["Parking", "Restrooms", "Picnic tables"],
+  },
+  // Lanai
+  "Hulopoe Beach": {
+    swimming:
+      "Excellent — marine preserve, ideal for swimming and snorkeling with dolphins",
+    amenities: [
+      "Restrooms",
+      "Showers",
+      "Picnic areas",
+      "Snorkeling access",
+      "Tide pools",
+    ],
+  },
+  "Shipwreck Beach": {
+    swimming: "Not for swimming — shallow reef and strong winds",
+    amenities: ["Parking", "Hiking trail", "Whale watching (winter)"],
+  },
+};
 
 // Category badge color mapping
 const categoryStyles: Record<
@@ -297,6 +424,7 @@ interface BeachCardProps {
 
 function BeachCard({ beach, index, onOpen }: BeachCardProps) {
   const cardIdx = index + 1;
+  const extras = beachExtras[beach.name];
 
   return (
     <button
@@ -319,6 +447,14 @@ function BeachCard({ beach, index, onOpen }: BeachCardProps) {
           <p className="text-ocean-600 text-sm leading-relaxed line-clamp-2">
             {beach.description}
           </p>
+          {extras && (
+            <div className="flex items-center gap-1.5 mt-2">
+              <Waves className="w-3.5 h-3.5 text-ocean-400 flex-shrink-0" />
+              <p className="text-ocean-500 text-xs truncate">
+                {extras.swimming}
+              </p>
+            </div>
+          )}
         </div>
       </div>
       <div className="px-5 pb-3 flex items-center gap-1 text-xs text-ocean-500 font-semibold group-hover:text-ocean-700 transition-colors">
@@ -336,6 +472,7 @@ interface BeachDetailModalProps {
 
 function BeachDetailModal({ beach, onClose }: BeachDetailModalProps) {
   const isOpen = beach !== null;
+  const extras = beach ? beachExtras[beach.name] : null;
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -381,6 +518,47 @@ function BeachDetailModal({ beach, onClose }: BeachDetailModalProps) {
                   {beach.description}
                 </p>
               </div>
+
+              {/* Swimming Conditions */}
+              {extras && (
+                <div className="flex items-start gap-3 bg-ocean-50 rounded-xl px-4 py-3 border border-ocean-100">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-ocean-100 flex items-center justify-center mt-0.5">
+                    <Waves className="w-4 h-4 text-ocean-600" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-ocean-500 uppercase tracking-wide mb-0.5">
+                      Swimming Conditions
+                    </p>
+                    <p className="text-sm text-ocean-800 font-medium">
+                      {extras.swimming}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Amenities */}
+              {extras && extras.amenities.length > 0 && (
+                <div className="flex items-start gap-3 bg-palm-50 rounded-xl px-4 py-4 border border-palm-100">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-palm-100 flex items-center justify-center mt-0.5">
+                    <CheckCircle2 className="w-4 h-4 text-palm-600" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-xs font-bold text-palm-600 uppercase tracking-wide mb-2">
+                      Amenities
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {extras.amenities.map((amenity) => (
+                        <span
+                          key={amenity}
+                          className="text-xs font-medium px-2.5 py-1 rounded-full bg-palm-100 text-palm-700 border border-palm-200"
+                        >
+                          {amenity}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Close action */}
               <div className="pt-1 pb-1">
